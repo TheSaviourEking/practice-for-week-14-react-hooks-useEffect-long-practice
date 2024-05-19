@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./components/Message";
 import PictureDisplay from "./components/PictureDisplay";
 
@@ -11,6 +11,25 @@ function App() {
   const [isBrown, setIsBrown] = useState(false);
   const [isLightBrown, setIsLightBrown] = useState(false);
   const [isYellow, setIsYellow] = useState(false);
+
+  useEffect(() => {
+    console.log('========================================================')
+    console.log('Color Change :: red?', isRed);
+    console.log('Color Change :: orange?', isOrange);
+    console.log('Color Change :: brown?', isBrown);
+    console.log('Color Change :: light brown?', isLightBrown);
+    console.log('Color Change :: yellow?', isYellow);
+
+    const colors = [];
+    if (isRed) colors.push('red');
+    if (isOrange) colors.push('orange');
+    if (isBrown) colors.push('brown');
+    if (isLightBrown) colors.push('light-brown');
+    if (isYellow) colors.push('yellow');
+
+    setFeatherColors(() => colors)
+
+  }, [isRed, isOrange, isBrown, isLightBrown, isYellow]);
 
   return (
     <>
@@ -35,7 +54,7 @@ function App() {
           max={10}
         />
       </div>
-      <div className="button-controls">
+      <form className="button-controls">
         Feather Color(s):
         <label><input
           type="checkbox"
@@ -57,7 +76,7 @@ function App() {
           type="checkbox"
           onChange={(e) => setIsYellow(e.currentTarget.checked)}
         />Golden Yellow</label>
-      </div>
+      </form>
 
       {/* Generated display based on user selections above */}
       <h3 className="button-controls">Enjoy your turkey</h3>
