@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-function Message({ size }) {
+function Message({ size, featherCount }) {
   const [sizeClass, setSizeClass] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     let cname = '';
@@ -26,9 +27,15 @@ function Message({ size }) {
     console.log('Message', size);
   }, [size]);
 
+  useEffect(() => {
+    if (featherCount <= 0) setMessage(() => 'Oh my! Your bird is naked!');
+    else if (featherCount >= 10) setMessage(() => 'Full turkey!');
+    else { setMessage(() => 'Coming along...') }
+  }, [featherCount]);
+
   return (
     <div className={`message ${sizeClass}`}>
-      (Oh my! Your bird is naked!)
+      {message}
     </div>
   );
 };
