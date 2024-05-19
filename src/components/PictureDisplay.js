@@ -25,34 +25,34 @@ const feathers = [
   featherA,
 ];
 
-function PictureDisplay({ size, featherCount, featherColors }) {
+function PictureDisplay({ sizeClass, featherCount, featherColors }) {
   // console.log('PictureDisplay', size, featherCount, featherColors);
 
   // useEffect(() => {
   //   console.log('PictureDisplay', size, featherCount, featherColors);
   // }, [size, featherCount, featherColors])
 
-  const [sizeClass, setSizeClass] = useState('');
+  // const [sizeClass, setSizeClass] = useState('');
 
-  useEffect(() => {
-    console.log('PictureDisplay size', size);
-    let cname = '';
-    switch (size) {
-      case 'm':
-        cname = 'medium';
-        break;
-      case 'l':
-        cname = 'large';
-        break;
-      case 'xl':
-        cname = 'xlarge';
-        break;
-      default:
-        cname = 'small';
-        break;
-    }
-    setSizeClass(() => cname)
-  }, [size]);
+  // useEffect(() => {
+  //   console.log('PictureDisplay size', size);
+  //   let cname = '';
+  //   switch (size) {
+  //     case 'm':
+  //       cname = 'medium';
+  //       break;
+  //     case 'l':
+  //       cname = 'large';
+  //       break;
+  //     case 'xl':
+  //       cname = 'xlarge';
+  //       break;
+  //     default:
+  //       cname = 'small';
+  //       break;
+  //   }
+  //   setSizeClass(() => cname)
+  // }, [size]);
 
   useEffect(() => {
     console.log('PictureDisplay feather count', featherCount)
@@ -62,11 +62,24 @@ function PictureDisplay({ size, featherCount, featherColors }) {
   }, [featherColors]);
 
   // TODO: Wrap in useEffect
-  const colors = [];
-  if (!featherColors || featherColors.length === 0) featherColors = [''];
-  for (let i = 0; i < featherCount; i++) {
-    colors.push(featherColors[i % featherColors.length]);
-  }
+  // const colors = [];
+  // if (!featherColors || featherColors.length === 0) featherColors = [''];
+  // for (let i = 0; i < featherCount; i++) {
+  //   colors.push(featherColors[i % featherColors.length]);
+  // }
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+
+    const newColors = [];
+    if (!featherColors || featherColors.length === 0) featherColors = [''];
+
+    for (let i = 0; i < featherCount; i++) {
+      newColors.push(featherColors[i % featherColors.length]);
+    };
+
+    setColors(() => newColors);
+  }, [featherColors, featherCount])
 
   return (
     <div className={`image-area ${sizeClass}`}>

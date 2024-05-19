@@ -1,0 +1,52 @@
+h1 {
+    /* display: block; */
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 80%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.container>div {
+    flex-basis: 45%;
+}
+
+/* Extra Small Devices (Phones) */
+@media (max-width: 576px) {
+    .container {
+        background-color: lightblue;
+    }
+}
+
+/* Small Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 768px) {
+    .container {
+        background-color: lightgreen;
+    }
+}
+
+/* Medium Devices (Small Laptops) */
+@media (min-width: 768px) and (max-width: 992px) {
+    .container {
+        background-color: lightcoral;
+    }
+}
+
+/* Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1200px) {
+    .container {
+        background-color: lightgoldenrodyellow;
+    }
+}
+
+/* Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+    .container {
+        background-color: lightpink;
+    }
+}
